@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Display from './components/Display';
+import Dashboard from './components/Dashboard';
+
 
 import './App.css';
 
@@ -19,7 +22,19 @@ class App extends Component {
   }
 
   ballIncrease = e => {
+    if(this.state.balls === 4) {
+      this.setState ({
+        balls:0
+      })
+    }else{
+      this.setState({
     
+        ...this.state,
+        balls: this.state.balls + 1
+      
+        
+      })
+    }
   }
 
 
@@ -29,7 +44,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      
+      <Display balls={this.state.balls} strikes={this.state.strikes} />
+      <Dashboard ballIncrease={this.ballIncrease} strikeIncrease={this.strikeIncrease} />
       </div>
     );
   }
